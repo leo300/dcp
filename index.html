@@ -32,6 +32,7 @@ function calc(){
   let p = parseFloat(price.value) || 0;
   let d = parseFloat(discount.value) || 0;
   let c = currency.value;
+  p = Math.max(0, p);
   d = Math.max(0, Math.min(100, d));
   let f = p * (1 - d / 100);
   result.innerText = f.toFixed(2) + " " + c;
