@@ -8,8 +8,8 @@
 :root { --bg:#f5f6f8; --card:white; --text:black; --res:green; }
 .dark { --bg:#121212; --card:#1e1e1e; --text:white; --res:#00e676; }
 body{ margin:0; font-family:Arial; background:var(--bg); color:var(--text); display:flex; justify-content:center; align-items:center; height:100vh; }
-.card{ width:90%;  max-width:420px; background:var(--card);  padding:20px; border-radius:20px; box-sizing: border-box; }
-input, select{ width:100%; padding:14px;   margin:8px 0;  font-size:16px;  box-sizing: border-box; }
+.card{ width:90%;  max-width:420px; background:var(--card); padding:20px; border-radius:20px; box-sizing: border-box; }
+input, select{ width:100%; padding:14px; margin:8px 0; font-size:16px; box-sizing: border-box; }
 .result{ font-size:30px; text-align:center; margin-top:15px; color:var(--res); }
 .footer { text-align: center;  margin-top: 20px; font-size: 12px; color: #888; }
 </style>
@@ -18,7 +18,7 @@ input, select{ width:100%; padding:14px;   margin:8px 0;  font-size:16px;  box-s
 <div class="card">
 <h2>Discount PRO</h2>
 <input id="price" type="number" min="0" placeholder="Price">
-<input id="discount" type="number" min="0" placeholder="Discount %">
+<input id="discount" type="number" min="0" max="100" placeholder="Discount %">
 <select id="currency">
 <option>NOK</option><option>EUR</option><option>USD</option>
 </select>
@@ -29,11 +29,12 @@ input, select{ width:100%; padding:14px;   margin:8px 0;  font-size:16px;  box-s
 </div>
 <script>
 function calc(){
-  let p=parseFloat(price.value)||0;
-  let d=parseFloat(discount.value)||0;
-  let c=currency.value;
-  let f=p*(1-d/100);
-  result.innerText=f.toFixed(2)+" "+c;
+  let p = parseFloat(price.value) || 0;
+  let d = parseFloat(discount.value) || 0;
+  let c = currency.value;
+  d = Math.max(0, Math.min(100, d));
+  let f = p * (1 - d / 100);
+  result.innerText = f.toFixed(2) + " " + c;
 }
 price.oninput=calc;
 discount.oninput=calc;
