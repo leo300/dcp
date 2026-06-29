@@ -1,3 +1,5 @@
+<img src="assets/banner.png" alt="Banner" width="100%" />
+
 # Discount PRO
 
 A simple Progressive Web App (PWA) for quickly calculating discounted prices.
